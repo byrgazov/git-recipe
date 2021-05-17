@@ -22,7 +22,9 @@ setup(
     namespace_packages=['recipe'],
     packages=find_packages(),
     install_requires=['setuptools', 'zc.recipe.egg'],
-    entry_points={'zc.buildout': ['default = recipe.git:GitRecipe']},
+    entry_points={
+        'zc.buildout': ['default = recipe.git:GitRecipe'],
+        'zc.buildout.uninstall': ['default = recipe.git:uninstaller']},
     zip_safe=False,
     long_description=open('README.rst').read(),
 )
