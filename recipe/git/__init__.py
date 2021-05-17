@@ -166,9 +166,8 @@ class GitRecipe(object):
             easy_install.develop(path, target)
 
     def _list_git_files(self):
-        cwd = os.getcwd()
         git_files = ['.git'] + self.git('ls-files').splitlines()
-        git_files = [os.path.join(cwd, path) for path in git_files]
+        git_files = [os.path.join(self.repo_path, path) for path in git_files]
         # @xxx: будет оставаться мусор в виде пустых директорий
         # @see: L{uninstaller}
         return git_files
