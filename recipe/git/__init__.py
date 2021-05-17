@@ -64,13 +64,10 @@ def uninstaller(part, options):
     @todo: keep_files = [...]
     """
 
-    print('--uninstaller-1--', options['__buildout_installed__'])
     git_files  = options['__buildout_installed__'].splitlines()
     keep_files = extract_keep_files(options)
-    print('--uninstaller-2--', keep_files)
     git_files  = exclude_files(git_files, keep_files)
     options['__buildout_installed__'] = '\n'.join(git_files)
-    print('--uninstaller-3--', options['__buildout_installed__'])
 
 
 def extract_keep_files(options):
@@ -97,8 +94,6 @@ def exclude_files(files, excludes=None):
     excludes  = excludes or []
     keep_dirs = [path for path in excludes if os.path.isdir(path)]
     files = files[:]
-
-    print('--exclude_files--', keep_dirs)
 
     for filename in list(files):
         assert os.path.isabs(filename), filename
